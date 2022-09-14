@@ -1,0 +1,16 @@
+.contacts_lists {
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+  align-self: start;
+
+}
+
+.contacts_contactList {
+  outline: none;
+}
+
+.contacts_contactList:focus {
+  background: #c4d0e2;
+
+}
