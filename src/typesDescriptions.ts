@@ -79,7 +79,7 @@ export interface Icontact {
   }
   export interface IInputsDataForCreate {
     inputs: Array<IInputProps>,
-    changeFunc: IhandleChangeInput
+		changeFunc: IhandleChangeInput,
   }
 
 // searchForm //

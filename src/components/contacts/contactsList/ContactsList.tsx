@@ -3,7 +3,6 @@ import ContextData from "../../../ContextData"
 import {useHookDispatch} from "../../../redux/hookStore"
 import {useNavigate} from "react-router-dom"
 import Contact from ".././contact/Contact"
-import "./contactsList.css"
 
 import { IcontactList } from "../../../typesDescriptions"
 
@@ -19,12 +18,12 @@ const ContactsList = () => {
   }, [dispatch])
     
 	return (
-		<ul className = "contacts_lists">
+		<ul className = "body__listsItems">
 			{
 				contacts.map( it => (
 						<li 
 							key  = {it.id} 
-							className = "contacts_contactList" 
+							className = "body__contactList" 
 						>
 							<Contact data = {it}/>
 						</li>

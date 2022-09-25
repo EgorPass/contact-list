@@ -1,5 +1,4 @@
 import React from "react"
-import "./footer.css"
 
 const Footer: React.FC = () => (
 	<footer className = "contacts__footer">

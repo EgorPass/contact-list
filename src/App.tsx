@@ -53,7 +53,7 @@ function App() {
           
           <Header isAuth = {isAuth}/>
           
-          <section className = "contacts__body">        
+          <section className = "contacts__body body">        
 
             <Routes>
               <Route path = "/" element = { <LoginForm /> } />  
