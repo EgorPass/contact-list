@@ -17,10 +17,10 @@ const Menu: React.FC = () => {
 								} = useContext(ContextData)  as IcontextForSearchForm
 	
 	return (
-				<div className = "contacts_headerMenu">
+				<div className = "header__options options">
 					<div
 						onClick = {createNewContact} 
-						className = "contacts_createNewContact"
+						className = "options__buttons"
 					>
 						Новый контакт
 					</div>

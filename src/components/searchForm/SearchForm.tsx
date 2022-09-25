@@ -11,7 +11,7 @@ const SearchForm: React.FC<ISearchForm> = ({ changeField, searchContact, onKeyEn
 	const {searching} = useHookSelector(state=>state)
 	
 	return (
-		<div className = "contacts_search"> 
+		<div className = "options__search search"> 
 
 			<InputField 
 				type = "search"
@@ -20,14 +20,14 @@ const SearchForm: React.FC<ISearchForm> = ({ changeField, searchContact, onKeyEn
 				autofocus = {true}
 				changeFunc =  {changeField} 
 				onKeyEnter = {onKeyEnter}
-				className = "contacts_searchInput"
+				className = "search__input"
 			/>
 			
 			<ButtonAcceptCancel 
 				type = "submit" 
 				name = "start" 
 				value = "&#10550;"
-				className = ""
+				className = "search__buttons"
 				clickFunc = {(e)=> {e.preventDefault(); searchContact(searching)}}
 			/>
 

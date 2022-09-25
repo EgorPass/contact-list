@@ -2,7 +2,7 @@ import React from "react"
 import "./footer.css"
 
 const Footer: React.FC = () => (
-	<footer className = "contacts_footer">
+	<footer className = "contacts__footer">
 		<div>
 			Пасюков Егор Александрович
 		</div>

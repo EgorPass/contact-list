@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom"
 import  ContextData  from "./ContextData"
 import { useEdit } from "./usersHooks/useEdit"
 import { useLogin } from "./usersHooks/useLogin"
-import { useHookSelector, useHookDispatch } from "./redux/hookStore"
+import { useHookSelector } from "./redux/hookStore"
 
 import Header from "./components/header/Header"
 import Footer from "./components/footer/Footer"
@@ -48,12 +48,12 @@ function App() {
                                                           }
 
   return (
-      <article className = "contacts_container">
+      <article className = "contacts">
         <ContextData.Provider value = { context } >
           
           <Header isAuth = {isAuth}/>
           
-          <section className = "contacts_body">        
+          <section className = "contacts__body">        
 
             <Routes>
               <Route path = "/" element = { <LoginForm /> } />  

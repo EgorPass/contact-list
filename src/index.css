@@ -14,28 +14,6 @@ code {
     monospace;
 }
 
-.contacts_container {
-  user-select: none;
-  height: 100vh;
-  max-height: 100vh;
-
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 15% 70% 15%;
-}
-
-.contacts_body {
-  overflow: auto;
-  margin: 0 auto;
-
-  width: 100%;
-
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  /*align-items: center;*/
-}
- 
 
 .contacts_logIn {
   align-self: center;
