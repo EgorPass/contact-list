@@ -7,6 +7,7 @@ import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import "./firebase"
 import './index.css';
+import './index.scss';
 
 
 const container = document.getElementById('root')!;
