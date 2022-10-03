@@ -20,7 +20,8 @@ const SearchForm: React.FC<ISearchForm> = ({ changeField, searchContact, onKeyEn
 				autofocus = {true}
 				changeFunc =  {changeField} 
 				onKeyEnter = {onKeyEnter}
-				className = "search__input"
+				className="search__input"
+				placeholder = "Поиск"
 			/>
 			
 			<ButtonAcceptCancel 

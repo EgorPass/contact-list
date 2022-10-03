@@ -1,11 +1,10 @@
-import { createSlice, createAsyncThunk, PayloadAction, Dispatch, Reducer } from "@reduxjs/toolkit"
+import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
 import { 
 					Icontact, 
 					IeditContactAtServer,
 					IoptionsForAsyncThunk,
-					IpayloadNumber,
 					IasyncReturnArrayContactsOrVoid,
 																				} from "../typesDescriptions"
 

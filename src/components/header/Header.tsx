@@ -1,15 +1,13 @@
 import React from "react"
 import Head from "./head/Head"
-import Menu from "./menu/Menu"
+import HederOptions from "./hederOptions/HederOptions";
 			
-const Header: React.FC<{isAuth: boolean}> = ({isAuth}) =>(
-		<header className = "contacts__header header">
-			
-			<Head isAuth = {isAuth} />
-			{isAuth && <Menu /> }
-
-		</header>
-)
+const Header: React.FC<{ isAuth: boolean }> = ({ isAuth }) => (
+  <header className="contacts__header header">
+    <Head isAuth={isAuth} />
+    {isAuth && <HederOptions />}
+  </header>
+);
 
 
 export default Header

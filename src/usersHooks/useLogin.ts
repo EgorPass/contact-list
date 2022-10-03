@@ -1,65 +1,66 @@
-import { useHookDispatch } from "../redux/hookStore"
-import { setAuth, changeFieldLogin, changeFieldReg } from "../redux/stateReducers"
-import { addLoginForChangeForm, addPasswordForChangeForm } from "../redux/fieldsReducers"
-import { logIn, regIn } from "../redux/loginActions"
+import {
+  useActionsOfState,
+  useActionsOffetchReducers,
+  useActionsOfFields,
+  useActionsOfLogin,
+} from "./../redux/bindActions";
 
-import { IloginButton, IhandleChangeInput, IchangeLoginToReg } from "../typesDescriptions"
+import {
+  IloginButton,
+  IhandleChangeInput,
+  IchangeLoginToReg,
+} from "../typesDescriptions";
 
 export function useLogin() {
-	const dispatch = useHookDispatch();
-
+  const { logIn, regIn } = useActionsOfLogin();
+  const { addLoginForChangeForm, addPasswordForChangeForm } =
+    useActionsOfFields();
+  const { changeFieldLogin, changeFieldReg } = useActionsOfState();
+  const { logOut } = useActionsOffetchReducers();
+ 
 	// сброс полей диалогового окна
-	const resetChange: Function = () => {
-	  dispatch( addLoginForChangeForm("") );
-		dispatch( addPasswordForChangeForm("") ); 
-  }
+  const resetChange: Function = () => {
+    addLoginForChangeForm("");
+    addPasswordForChangeForm("");
+  };
 
-	// функция для контролируемого взаимодействия с input
-	const handleChangeLogin: IhandleChangeInput = (e) => {
-		let target = e.target as HTMLInputElement;
-		let { name, value } = target;
+  // функция для контролируемого взаимодействия с input
+  const handleChangeLogin: IhandleChangeInput = (e) => {
+    let target = e.target as HTMLInputElement;
+    let { name, value } = target;
 
-			if( name === "login" ) dispatch( addLoginForChangeForm(value) )
-	   	if( name === "password") dispatch( addPasswordForChangeForm(value) )
-	}
+    if (name === "login") addLoginForChangeForm(value);
+    if (name === "password") addPasswordForChangeForm(value);
+  };
 
-	// действие для смены модалки регистрации или входа
-	const changeLoginToReg: IchangeLoginToReg = (str) => {
-			// if(typeof str === "string") {
-				resetChange()
+  // действие для смены модалки регистрации или входа
+  const changeLoginToReg: IchangeLoginToReg = (str) => {
+    resetChange();
 
-				if( str === "login" ) dispatch( changeFieldLogin() )
-				if( str === "reg" ) dispatch( changeFieldReg() )
-			// } 
-	}
+    if (str === "login") changeFieldLogin();
+    if (str === "reg") changeFieldReg();
+  };
 
-	// действие для кнопки Вход
-	const loginButton: IloginButton = async (obj) => {	
-		const res = await dispatch( logIn(obj) )
-		let state = (res.payload === obj.login)
-			if(state) resetChange()
-		return state;
-	}
+  // действие для кнопки Вход
+  const loginButton: IloginButton = async (obj) => {
+    logIn(obj);
+  };
 
-	// действие для кнопки Регистрации
-	const regButton: IloginButton = async (obj) => { 
-		const res = await dispatch( regIn(obj) )
-		let state = (res.payload === obj.login)
-			if(state) resetChange()
-		return state;
-	}
+  // действие для кнопки Регистрации
+  const regButton: IloginButton = async (obj) => {
+    regIn(obj);
+  };
 
+  // действие для кнопки Exit
+  const logOutButton: Function = () => {
+    logOut();
+  };
 
-	// действие для кнопки Exit
-	const logOutButton: Function = () => {
-		dispatch( setAuth(false) )
-	}
-
-	return {
-		regButton,
-		loginButton,
-		handleChangeLogin,
-		logOutButton,
-		changeLoginToReg
-	}
-} 
+  return {
+    regButton,
+    loginButton,
+    handleChangeLogin,
+    logOutButton,
+    changeLoginToReg,
+  };
+}

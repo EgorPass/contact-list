@@ -1,7 +1,6 @@
 import { configureStore , combineReducers } from "@reduxjs/toolkit"
 
 import {   
-				isAuth,
 				editContact,
 				newContact,
 				changeField,
@@ -24,7 +23,6 @@ let store = configureStore({
 		editContact,
 		newContact,
 		changeField,
-		isAuth,
 		fetchStatus
 	}
 })

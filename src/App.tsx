@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from "react-router-dom"
+import React, { useEffect } from 'react';
+import { Route, Routes, useNavigate } from "react-router-dom"
 import  ContextData  from "./ContextData"
 import { useEdit } from "./usersHooks/useEdit"
 import { useLogin } from "./usersHooks/useLogin"
@@ -16,7 +16,7 @@ import Loader from "./components/loader/Loader"
 function App() {
   const {   
             newContact,   editContact,  
-            fetchStatus,  isAuth, 
+            fetchStatus,  
                                                 } = useHookSelector( state => state)
   const { 
           loginButton,  regButton, logOutButton,
@@ -33,7 +33,7 @@ function App() {
           getContactsFromServer,
                                                 } = useEdit() 
   const context = { 
-                    isAuth,
+                    isAuth: !!fetchStatus.log,
                     contacts,
                     searchButton,
                     createNewContact,  
@@ -46,33 +46,39 @@ function App() {
                     regButton,          loginButton,
                     changeLoginToReg,   logOutButton,
                                                           }
+																													
+	const navigate = useNavigate();
+	
+	useEffect(() => {
+			if(!!fetchStatus.log) navigate("/contact") 
+		}, [fetchStatus])
 
   return (
-      <article className = "contacts">
-        <ContextData.Provider value = { context } >
-          
-          <Header isAuth = {isAuth}/>
-          
-          <section className = "contacts__body body">        
+    <article className="contacts">
+      <ContextData.Provider value={context}>
+        <Header isAuth={!!fetchStatus.log} />
 
-            <Routes>
-              <Route path = "/" element = { <LoginForm /> } />  
-              <Route path =  "/contact"  element = { <ContactsList /> } />
-            </Routes>
+        <section className="contacts__body body">
+          <Routes>
+            <Route path="/" element={<LoginForm />} />
+            <Route path="/contact" element={<ContactsList />} />
+          </Routes>
 
-            {isAuth && editContact && <CreateContact title = {newContact ? "Создание контакта" : "Редактирование контакта" }/> }
-              
-            { fetchStatus.status === "pending" && <Loader /> }
-            { fetchStatus.error && <ErrorField error = {fetchStatus.error}/>}
+          {!!fetchStatus.log && editContact && (
+            <CreateContact
+              title={
+                newContact ? "Создание контакта" : "Редактирование контакта"
+              }
+            />
+          )}
 
-          </section>
-                  
-          <Footer />
+          {fetchStatus.status === "pending" && <Loader />}
+          {fetchStatus.error && <ErrorField error={fetchStatus.error} />}
+        </section>
 
-        </ContextData.Provider>
-      </article>  
-
-    
+        <Footer />
+      </ContextData.Provider>
+    </article>
   );
 }
 

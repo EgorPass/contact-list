@@ -1,5 +1,6 @@
 import React from "react"
 import { Dispatch,  PayloadAction} from "@reduxjs/toolkit"
+import { string } from "prop-types"
 
 export interface Icontact {
   name: string,
@@ -18,7 +19,7 @@ export interface Icontact {
 
 // useLogin //
   export type IchangeLoginToReg = (str: (string | undefined)) => void
-  export type IloginButton = (obj: ILoginRegin) => Promise<boolean>
+  export type IloginButton = (obj: ILoginRegin) => void // Promise<boolean>
   export interface ILoginRegin {
     login: string,
     password: string,
@@ -73,13 +74,19 @@ export interface Icontact {
     value: string,
     title?: string,
     className?: string,
-    autofocus?: boolean,
+		autofocus?: boolean,
+		placeholder?: string,
     changeFunc?: IhandleChangeInput,
     onKeyEnter?: IInputKeyboardFunc,
-  }
+	}
+	
+	export interface IplaceholdersObj  {
+		[key: string]: string,
+	}
+
   export interface IInputsDataForCreate {
-    inputs: Array<IInputProps>,
-		changeFunc: IhandleChangeInput,
+    inputs: Array<IInputProps>;
+    changeFunc: IhandleChangeInput;
   }
 
 // searchForm //
@@ -133,7 +140,8 @@ export interface ImodalProps {
   inputs: IInputProps[],
   buttons: IButtonsProps[],
   login?: boolean,
-  changeFunc: IhandleChangeInput,
+	changeFunc: IhandleChangeInput,
+	placeholders?: IplaceholdersObj,
   changeField?: string,
   changeLoginToReg?: IchangeLoginToReg,
 }
@@ -143,14 +151,15 @@ export interface ImodalProps {
 export interface IfetchStatus {
   status: string,
   error: (string | null),
-  data: Icontact[]
+	data: Icontact[],
+	log: string | null,
 }
 
 export type IpayloadBoolean = PayloadAction<boolean>
 export type IpayloadString = PayloadAction<string>
 export type IpayloadNumber = PayloadAction<number>
 
-export type IasyncReturnArrayContactsOrVoid = (Array<Icontact> | void)
+export type IasyncReturnArrayContactsOrVoid = (Array<Icontact> | string | void)
 
 export interface IeditContactAtServer {
   obj: Icontact,

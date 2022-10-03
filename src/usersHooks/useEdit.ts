@@ -1,188 +1,189 @@
-import { useHookSelector, useHookDispatch } from "../redux/hookStore"
-import useSyntaxisCheck from "./useSyntaxisCheck"
+import {
+  useActionsOfContacts,
+  useActionsOfState,
+  useActionsOffetchReducers,
+  useActionsOfFields,
+} from "./../redux/bindActions";
+import { useHookSelector } from "../redux/hookStore";
+import useSyntaxisCheck from "./useSyntaxisCheck";
 
-import { 
-        delContactFromServer,     getContactsFromServer, 
-        editContactAtServer,      newContactForServer,                                           
-                                                  } from "../redux/contactsReducers"
-import {  
-        setStatusEdit,    setNewContact, 
-                                                  } from "../redux/stateReducers"
-import { 
-        setIdForEditField,        changeSearchField,
-        addNameForChangeContact,  addSurForChangeContact,
-        addEmailForChangeContact, addTelForChangeContact,
-                                                  } from "../redux/fieldsReducers"
-
-import { editError, resetEditError } from "../redux/fetchReducers"
-
-import { 
-		Icontact,  
-		IhandleChangeInput,
-		IoptionButtons, 
-		IacceptButton, 
-		IsearchButton,
-		IInputKeyboardFunc,
-		IButtonsClickFunc,
-		IcheckFieldsForAccept
-	} from "../typesDescriptions"
+import {
+  Icontact,
+  IhandleChangeInput,
+  IoptionButtons,
+  IacceptButton,
+  IsearchButton,
+  IInputKeyboardFunc,
+  IButtonsClickFunc,
+  IcheckFieldsForAccept,
+} from "../typesDescriptions";
 
 export function useEdit() {
+  const { setStatusEdit, setNewContact } = useActionsOfState();
+  const {
+    delContactFromServer,
+    getContactsFromServer,
+    editContactAtServer,
+    newContactForServer,
+	} = useActionsOfContacts();
+	
+	const { editError, resetEditError } = useActionsOffetchReducers();
 
 	const {
-					editId,				fetchStatus,
-					newContact, 	editContact, 	
-															} = useHookSelector(state => state)
-  const contacts = fetchStatus.data || []
+    setIdForEditField,
+    changeSearchField,
+    addNameForChangeContact,
+    addSurForChangeContact,
+    addEmailForChangeContact,
+    addTelForChangeContact,
+  } = useActionsOfFields();
+  const { editId, fetchStatus, newContact, editContact } = useHookSelector(
+    (state) => state
+  );
+  const contacts = fetchStatus.data || [];
 
-  const {	checkFieldsForAccept }: {checkFieldsForAccept: IcheckFieldsForAccept} = useSyntaxisCheck()
-
-	const dispatch = useHookDispatch();
+  const {
+    checkFieldsForAccept,
+  }: { checkFieldsForAccept: IcheckFieldsForAccept } = useSyntaxisCheck();
 
   const resetChange: Function = () => {
-  	dispatch( addNameForChangeContact("") ); 
-  	dispatch( addSurForChangeContact("") );  
-  	dispatch( addTelForChangeContact("") );
-  	dispatch( addEmailForChangeContact("") ); 
-  }
+    addNameForChangeContact("");
+    addSurForChangeContact("");
+    addTelForChangeContact("");
+    addEmailForChangeContact("");
+  };
 
- 	// заполенение сторы из формы при создании или редактировании 
+  // заполенение сторы из формы при создании или редактировании
   const methods: Function = (value: string, name: string): void => {
-  	if( name === "name" ) dispatch( addNameForChangeContact(value) )
-   	if( name === "sur") dispatch( addSurForChangeContact(value) )
-   	if( name === "tel") dispatch( addTelForChangeContact(value) )
-   	if( name === "email") dispatch( addEmailForChangeContact(value) )
-   	if( name === "search") dispatch( changeSearchField(value) )
-  }
+    if (name === "name") addNameForChangeContact(value);
+    if (name === "sur") addSurForChangeContact(value);
+    if (name === "tel") addTelForChangeContact(value);
+    if (name === "email") addEmailForChangeContact(value);
+    if (name === "search") changeSearchField(value);
+  };
 
-	// функция для поиска контакта в сторе
-	const findContact = (id: number) => {
-		return contacts.find((it: Icontact) => {
-			if(typeof it.id === "number"){
-				const i: number = it.id
-				if( i === id ) {
-					return it
-				}
-				
-			}
-		})
-	}
+  // функция для поиска контакта в сторе
+  const findContact = (id: number) => {
+    return contacts.find((it: Icontact) => {
+      if (typeof it.id === "number") {
+        const i: number = it.id;
+        if (i === id) {
+          return it;
+        }
+      }
+    });
+  };
 
-	// функция для контролируемого взаимодействия с input
-	const handleChangeInput: IhandleChangeInput = (e) => {
-		
-		let target = e.target as HTMLInputElement
-		let { name, value } = target
+  // функция для контролируемого взаимодействия с input
+  const handleChangeInput: IhandleChangeInput = (e) => {
+    let target = e.target as HTMLInputElement;
+    let { name, value } = target;
 
-			methods(value, name)
-	}
+    methods(value, name);
+  };
 
-	// обработка нажатия Enter для поисковой формы
-	const handleSearch: IInputKeyboardFunc = (e) => {		
-		let target = e.target as HTMLInputElement
-		let { value } = target;
+  // обработка нажатия Enter для поисковой формы
+  const handleSearch: IInputKeyboardFunc = (e) => {
+    let target = e.target as HTMLInputElement;
+    let { value } = target;
 
-			if(e.code === "Enter") dispatch( getContactsFromServer(value) );			
-	}
+    if (e.code === "Enter") getContactsFromServer(value);
+  };
 
-	// функция для устанвления зависимостей в сторе для создания нового контакта
-	const createNewContact: Function = () => {
-		dispatch( setNewContact() );
-		dispatch( setStatusEdit() );
-	}
+  // функция для устанвления зависимостей в сторе для создания нового контакта
+  const createNewContact: Function = () => {
+    setNewContact();
+    setStatusEdit();
+  };
 
-	// дейстиве на кнопке для кнопке удалить 
-	const removeButton: IoptionButtons = (id) => {
-		if(window.confirm("уверен?")) 
-				dispatch( delContactFromServer(id) )
-	}
+  // дейстиве на кнопке для кнопке удалить
+  const removeButton: IoptionButtons = (id) => {
+    if (window.confirm("уверен?")) delContactFromServer(id);
+  };
 
-	// дейстиве на кнопке для кнопке копировать 
-	const copyButton: IoptionButtons = (id: number) => {
-		const contact = findContact(id)
-			if(contact) {
-				window.navigator.clipboard.writeText(JSON.stringify(contact))
-			}
-	}
+  // дейстиве на кнопке для кнопке копировать
+  const copyButton: IoptionButtons = (id: number) => {
+    const contact = findContact(id);
+    if (contact) {
+      window.navigator.clipboard.writeText(JSON.stringify(contact));
+    }
+  };
 
+  // дейстиве на кнопке для кнопке редактировать
+  const editButton: IoptionButtons = (id) => {
+    setIdForEditField(id);
+    setStatusEdit();
 
-	// дейстиве на кнопке для кнопке редактировать 
-	const editButton: IoptionButtons = (id) => {
-		dispatch( setIdForEditField(id) )
-		dispatch( setStatusEdit() )
+    const contact = findContact(id);
+    for (let key in contact as Icontact | undefined) {
+      if (contact && Object.keys(contact).length)
+        if (key !== "id") methods(contact[key], key);
+    }
+  };
 
-		const contact = findContact(id)
-		for(let key in contact as (Icontact | undefined) ) {
-			if(contact && Object.keys(contact).length)
-				if( key !== "id")  methods(contact[key], key) 
-		}
-	}
+  // сброс полей при закрытии или смене окна
+  const resetDefault: Function = () => {
+    if (fetchStatus.error === "field-empty") resetEditError();
+    setStatusEdit();
+    resetChange();
+  };
 
-	// сброс полей при закрытии или смене окна
-	const resetDefault: Function = () => {
-		if(fetchStatus.error === "field-empty")dispatch (resetEditError())
-			dispatch( setStatusEdit() )
-			resetChange(); 
-	}
+  // дейстивие для кнопки Сохранить контакт
+  const acceptButton: IacceptButton = (obj) => {
+    if (checkFieldsForAccept(obj)) {
+      editError("field-empty");
+      return;
+    }
 
-	// дейстивие для кнопки Сохранить контакт
-	const acceptButton: IacceptButton = (obj) => {
-		
-		if(checkFieldsForAccept(obj) ) {
-			dispatch(editError("field-empty"))
-			return
-		}
+    if (newContact) {
+      obj.id = Date.now() as number;
+      newContactForServer(obj);
+      setNewContact();
+    }
 
-		if(newContact) {	
-			obj.id = Date.now() as number
-			dispatch( newContactForServer(obj) )
-			dispatch( setNewContact() );
-		}
-		
-		if(editContact && !newContact) {
-			obj.id = editId 
-			dispatch( editContactAtServer({id: editId, obj}) )
-		}
+    if (editContact && !newContact) {
+      obj.id = editId;
+      editContactAtServer({ id: editId, obj });
+    }
 
-			resetDefault()
-			dispatch( setIdForEditField(0) )
-	}
+    resetDefault();
+    setIdForEditField(0);
+  };
 
-	// дейстивие для кнопки Отменить
-	const cancelButton: Function = () => {
-		if(newContact) dispatch( setNewContact() );
-			
-		resetDefault()
-	}
+  // дейстивие для кнопки Отменить
+  const cancelButton: Function = () => {
+    if (newContact) setNewContact();
 
-	// дейстивие для кнопки Поиск
-	const searchButton: IsearchButton = (str)=> {
-		dispatch( getContactsFromServer(str) )
-	}
+    resetDefault();
+  };
 
-	// дейстивие для кнопки закрыть, на модалке об ошибках
-	const closeButton: IButtonsClickFunc = (e)=> {
-		dispatch (resetEditError())
-	}
+  // дейстивие для кнопки Поиск
+  const searchButton: IsearchButton = (str) => {
+    getContactsFromServer(str);
+  };
 
-	return {
-		contacts,
-		createNewContact,
-		
-		editButton,
-		copyButton,
-		removeButton,
-		
-		searchButton,
-		
-		acceptButton,
-		cancelButton,
-		closeButton,
-		
-		handleChangeInput,
-		handleSearch,
+  // дейстивие для кнопки закрыть, на модалке об ошибках
+  const closeButton: IButtonsClickFunc = (e) => {
+    resetEditError();
+  };
 
-		getContactsFromServer
+  return {
+    contacts,
+    createNewContact,
 
-	}
+    editButton,
+    copyButton,
+    removeButton,
+
+    searchButton,
+
+    acceptButton,
+    cancelButton,
+    closeButton,
+
+    handleChangeInput,
+    handleSearch,
+
+    getContactsFromServer,
+  };
 }

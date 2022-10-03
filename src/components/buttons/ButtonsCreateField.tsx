@@ -1,5 +1,5 @@
-import ButtonAcceptCancel from '../../buttons/ButtonAcceptCancel'
-import { IButtonsProps, IButtonsDataForCreate } from "../../../typesDescriptions"
+import ButtonAcceptCancel from './ButtonAcceptCancel'
+import { IButtonsDataForCreate } from "../../typesDescriptions"
 
 const ButtonsCreateField: React.FC<IButtonsDataForCreate> = ({buttons, child = ""}) => (
 	<div className = "contacts_createContectButtonField">
