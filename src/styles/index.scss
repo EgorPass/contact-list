@@ -1,0 +1,69 @@
+@import "./varibales";
+@import "../components/contacts/contacts";
+@import "../components/header/header.scss";
+@import "../components/searchForm/searchForm";
+// page global
+.contacts {
+
+	user-select: none;
+	height: 100vh;
+	max-height: 100vh;
+
+	@include gridBox($contacts-grid-template-row, auto);
+
+	@media (max-width: 690px) {
+		grid-template-rows: $contacts-grid-template-row-media;
+	}
+
+	&__header {
+		background-image: linear-gradient(180deg, $contacts__header-gradientColor_1, $contacts__header-gradientColor_2);
+		@include flexBox(column, center, center)
+	}
+
+	&__body {
+		overflow: auto;
+		margin: $contacts__body-margin;
+
+		width: $contacts__body-width;
+		@include flexBox(row, center, stretch)
+	}
+
+	&__footer {
+		background-image: linear-gradient(0deg, $contacts__footer-gradientColor_1, $contacts__footer-gradientColor_2);
+		flex-basis: $contacts__footer-flex-basis;
+
+		@include flexBox(column, center, end);
+		padding:$contacts__footer-padding;
+		
+	}
+
+}
+
+.body {
+
+	&__logIn {}
+
+	&__loader {}
+
+	&__listsItems {
+		list-style: none;
+		margin: $body__listItems-margin;
+		padding: $body__listItems-padding;
+		align-self: start;
+	}
+
+	&__contactList {
+		outline: none;
+		box-sizing: border-box;
+		width: $body__contactList-width;
+		margin:$body__contactList-margin;
+
+		@media(max-width: 599px) {
+			width: $body__contactList-width-media;
+		}
+
+		&:focus {
+			background: $body__contactList-focus-color;
+		}
+	}
+}

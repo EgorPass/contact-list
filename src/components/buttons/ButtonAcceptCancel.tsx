@@ -8,7 +8,7 @@ const ButtonAcceptCancel: React.FC<IButtonsProps> = ({ type, name, value, clickF
 		onClick = {clickFunc} 
 		className = {className}
 	>
-		<span>{value}</span>
+		<span className = "buttonTitle">{value}</span>
 	</button>
 
 )

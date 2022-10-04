@@ -3,7 +3,7 @@ import React from "react";
 const Menu: React.FC<{ createNewContact: () => void }> = ({
   createNewContact,
 }) => (
-  <div onClick={createNewContact} className="options__buttons">
+  <div onClick={createNewContact} className="headerOptions__buttons">
     Новый контакт
   </div>
 );

@@ -1,0 +1,44 @@
+.header {
+	&__title {
+		margin: $header__title-margin;
+
+		@media(max-width: 690px) {
+			margin: $header__title-margin-media;
+		}
+	}
+
+	&__options {
+		padding: $header__options-padding;
+		width: $header__options-width;
+
+		@include gridBox(auto, $header__options-grid-template-columns);
+		justify-items: center;
+		align-items: center;
+
+		@media(max-width: 690px) {
+			grid-template-columns: $header__options-grid-template-columns-media;
+			justify-content: center;
+			width: $header__options-width-media;
+		}
+	}
+}
+
+.headerOptions {
+	&__buttons {
+		cursor: pointer;
+		font-weight: bold;
+	}
+
+	&__link {
+		text-decoration: none;
+
+		&:visited {
+			color: black;
+		}
+	}
+
+	&__search {
+		@include flexBox(row, center, stretch);
+		padding: $headerOptions__search-padding;
+	}
+}

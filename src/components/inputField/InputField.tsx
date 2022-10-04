@@ -13,7 +13,7 @@ const InputField: React.FC<IInputProps> = ({
   className = "contacts_createContectInputField",
 }) => (
   <div className={className}>
-    <span>
+    <span className = "inputTitle">
       {title}
       {title ? ":" : ""}{" "}
     </span>
@@ -24,7 +24,8 @@ const InputField: React.FC<IInputProps> = ({
       type={type}
       name={name}
 			autoFocus={autofocus}
-			placeholder = {placeholder}
+			placeholder={placeholder}
+			className = 'inputField'
     />
   </div>
 );

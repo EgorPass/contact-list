@@ -1,0 +1,56 @@
+.contactItem {
+	box-shadow: 2px 2px 2px gray;
+	/*background: #e3e7ed;*/
+
+	&:focus {
+		background: #c4d0e2;
+		outline: none;
+	}
+
+	&__properties {
+		display: flex;
+		flex-flow: column nowrap;
+	}
+
+	&__optionsContainer {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: end;
+		padding: 10px 20px;
+
+		@media (max-width: 413px) {
+			.contacts_contactOptions {
+				justify-content: center;
+			}
+		}
+	}
+
+	&__name {
+		padding: 10px 20px;
+		font-style: italic;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+
+	&__data {}
+
+	&__option {
+		font-style: italic;
+		cursor: pointer;
+		padding-left: 15px
+	}
+}
+
+.contactData {
+	display: flex;
+	flex-flow: row nowrap;
+
+	&__title {
+		flex-basis: 35%;
+		text-align: end;
+	}
+
+	&__value {
+		margin-left: 15px;
+	}
+}

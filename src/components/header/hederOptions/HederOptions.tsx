@@ -17,7 +17,7 @@ const HederOptions: React.FC = () => {
   } = useContext(ContextData) as IcontextForSearchForm;
 
   return (
-    <div className="header__options options">
+    <div className="header__options headerOptions">
       <Menu createNewContact={createNewContact} />
 
       <SearchForm

@@ -1,0 +1,42 @@
+.search {
+
+	&__input {
+		display: inline;
+
+		&>.inputField {
+			border-radius: 10px 0 0 10px;
+			border: none;
+			padding: 8px 16px;
+			outline: none;
+			box-shadow: 2px 2px 2px gray;
+			min-width: 5vw;
+			width: 15vw;
+
+			@media (max-width: 690px) {
+				width: 40vw;
+			}
+		}
+	}
+
+	&__buttons {
+		border-radius: 0 10px 10px 0;
+		border: none;
+		padding: 5px 10px;
+		outline: none;
+		box-shadow: 2px 2px 2px gray;
+		font-weight: bold;
+		cursor: pointer;
+		background-color: white;
+
+		&:active>.buttonTitle {
+			top: 1px;
+			left: 1px;
+			color: red;
+		}
+
+		&>.buttonTitle {
+			position: relative;
+		}
+
+	}
+}

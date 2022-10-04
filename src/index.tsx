@@ -6,8 +6,8 @@ import store from "./redux/store"
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import "./firebase"
-import './index.css';
-import './index.scss';
+import './styles/index.css';
+import './styles/index.scss';
 
 
 const container = document.getElementById('root')!;

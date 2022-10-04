@@ -1,0 +1,41 @@
+$contacts-grid-template-row: 15% 70% 15%;
+$contacts-grid-template-row-media: 10% 84% 6%;
+$contacts__header-gradientColor_1: #8ca3c2;
+$contacts__header-gradientColor_2: #e3e7ed;
+$contacts__body-margin: 0 auto;
+$contacts__body-width: 100%;
+$contacts__footer-gradientColor_1: #8ca3c2;
+$contacts__footer-gradientColor_2: #e3e7ed;
+$contacts__footer-flex-basis: 75%;
+$contacts__footer-padding: 0 20px;
+
+$body__listItems-margin: 0;
+$body__listItems-padding: 0;
+$body__contactList-width: 600px;
+$body__contactList-width-media: 92vw;
+$body__contactList-margin: 0 auto 10px;
+$body__contactList-focus-color: #c4d0e2;
+
+$header__title-margin: 10px auto;
+$header__title-margin-media: 0;
+$header__options-padding: 0px 0px 15px;
+$header__options-width: 600px;
+$header__options-width-media: 90%;
+$header__options-grid-template-columns: 25% 50% 25%;
+$header__options-grid-template-columns-media: 20% 60% 20%;
+
+$headerOptions__search-padding: 0;
+
+
+@mixin flexBox($dir, $jc, $ac) {
+	display: flex;
+	flex-flow: $dir nowrap;
+	justify-content: $jc;
+	align-items: $ac;
+}
+
+@mixin gridBox($row, $col) {
+	display: grid;
+	grid-template-rows: $row;
+	grid-template-columns: $col;
+}
