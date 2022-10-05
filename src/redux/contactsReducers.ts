@@ -14,7 +14,8 @@ export const delContactFromServer = createAsyncThunk<IasyncReturnArrayContactsOr
 	"contacts/delContactFromServer",
 	async function (id, { rejectWithValue }){
 		try
-		{
+		{		
+				console.log("...async action - delContactFromServer")
 				const res = await axios.delete(`contact/${id}`)
 					if(res.statusText !== "OK") throw new Error ("Oops")
 				
@@ -34,6 +35,7 @@ export const newContactForServer = createAsyncThunk< IasyncReturnArrayContactsOr
 	async function ( obj, { rejectWithValue }) {
 		try
 		{
+				console.log("...async action - newContactForServer");
 				const res = await axios.post("contact/",  obj )
 					if(res.statusText !== "Created") throw new Error ("Oops")
 
@@ -55,6 +57,7 @@ export const getContactsFromServer = createAsyncThunk< IasyncReturnArrayContacts
 		const url =  str ? `contact?q=${param}` : "contact";
 		try
 		{
+				console.log("...async action - getContactsFromServer");
 				const res = await axios.get(url)
 					if(res.statusText !== "OK") throw new Error ("Oops")
 				return res.data;
@@ -71,6 +74,7 @@ export const editContactAtServer = createAsyncThunk<IasyncReturnArrayContactsOrV
 	async function ( {id = 0, obj = {}} , { rejectWithValue }) {
 		try
 		{
+				console.log("...async action - editContactAtServer");
 				const res = await axios.put(`contact/${id}`, obj)
 					if(res.statusText !== "OK") throw new Error ("Oops")
 

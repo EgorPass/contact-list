@@ -1,14 +1,17 @@
-import {  createAction, createAsyncThunk } from "@reduxjs/toolkit"
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 // import { setAuth } from "./stateReducers"
-import { 
-					getAuth, 
-					createUserWithEmailAndPassword, 
-					signInWithEmailAndPassword,
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
-																			} from "firebase/auth"
-
-import { IasyncReturnArrayContactsOrVoid, ILoginRegin, IoptionsForAsyncThunk, IresFromLoginOrRegIn } from "../typesDescriptions"
-
+import {
+  IasyncReturnArrayContactsOrVoid,
+  ILoginRegin,
+  IoptionsForAsyncThunk,
+  IresFromLoginOrRegIn,
+} from "../typesDescriptions";
 
 export const logIn = createAsyncThunk<
   IasyncReturnArrayContactsOrVoid,
@@ -21,6 +24,8 @@ export const logIn = createAsyncThunk<
   const auth = getAuth();
 
   try {
+    console.log("...async action - logIn");
+
     const userCredential = await signInWithEmailAndPassword(
       auth,
       login,
@@ -51,7 +56,9 @@ export const regIn = createAsyncThunk<
     const { login, password } = obj;
     const auth = getAuth();
 
-    try {
+		try {
+    console.log("...async action - regIn");
+			
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         login,

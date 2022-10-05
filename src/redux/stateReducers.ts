@@ -6,8 +6,12 @@ export const {
 } = createSlice({
   name: "editContact",
   initialState: false,
-  reducers: {
-    setStatusEdit: (state) => (state = !state),
+	reducers: {
+		setStatusEdit: (state) => {
+			console.log("...action & reducer setStatusEdit");
+			
+			return state = !state
+	},
   },
 });
 
@@ -18,7 +22,11 @@ export const {
   name: "newContact",
   initialState: false,
   reducers: {
-    setNewContact: (state) => (state = !state),
+		setNewContact: (state) => {
+			console.log("...action & reducer setNewContact");
+
+			return state = !state
+		},
   },
 });
 
@@ -29,8 +37,15 @@ export const {
   name: "changeField",
   initialState: "login",
   reducers: {
-    changeFieldLogin: (state) => "reg",
-    changeFieldReg: (state) => "login",
+		changeFieldLogin: (state) => {
+			console.log("...action & reducer changeFieldLogin");
+			return "reg"
+		},
+		changeFieldReg: (state) => {
+			console.log("...action & reducer changeFieldReg");
+			
+			return "login"
+		},
   },
 });
 

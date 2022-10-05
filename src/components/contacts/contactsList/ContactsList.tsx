@@ -11,10 +11,13 @@ const ContactsList = () => {
 	const navigate = useNavigate();
 	
 	useEffect( ()=> {
-  	if(!isAuth) navigate("/", {replace: true,})
-		 getContactsFromServer() 	
-  }, [])
-    
+		if (!isAuth) navigate("/", { replace: true, })
+		console.log("...get contacts in useEffect at ContactsList")
+		getContactsFromServer() 	
+		
+	}, [])
+  
+	console.log("...compouse contactList")
 	return (
 		<ul className = "body__listsItems">
 			{

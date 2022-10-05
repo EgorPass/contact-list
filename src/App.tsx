@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from "react-router-dom"
-import  ContextData  from "./ContextData"
-import { useEdit } from "./usersHooks/useEdit"
-import { useLogin } from "./usersHooks/useLogin"
+import ContextData from "./ContextData"
+import { useCreateContext }  from "./usersHooks/useCreateContext";
+
 import { useHookSelector } from "./redux/hookStore"
 
 import Header from "./components/header/Header"
@@ -17,46 +17,29 @@ function App() {
   const {   
             newContact,   editContact,  
             fetchStatus,  
-                                                } = useHookSelector( state => state)
-  const { 
-          loginButton,  regButton, logOutButton,
-          handleChangeLogin,  changeLoginToReg,
-                                                } = useLogin()
-  const { 
-          contacts,           
-          searchButton,
-          createNewContact,
-          editButton,    copyButton,     removeButton,    
-          acceptButton,  cancelButton,    closeButton,
-          handleChangeInput,  
-          handleSearch,
-          getContactsFromServer,
-                                                } = useEdit() 
-  const context = { 
-                    isAuth: !!fetchStatus.log,
-                    contacts,
-                    searchButton,
-                    createNewContact,  
-                    editButton,   copyButton,   removeButton,
-                    acceptButton,   cancelButton,   closeButton,   
-                    handleChangeInput,
-                    handleSearch,
-                    getContactsFromServer,
-                    handleChangeLogin, 
-                    regButton,          loginButton,
-                    changeLoginToReg,   logOutButton,
-                                                          }
-																													
+	} = useHookSelector(state => state)
+	
+	
+	
 	const navigate = useNavigate();
 	
-	useEffect(() => {
-			if(!!fetchStatus.log) navigate("/contact") 
-		}, [fetchStatus])
-
-  return (
+	useEffect(
+		() => {
+					if(fetchStatus.log) navigate("/contact");	
+		},
+		[fetchStatus.log]
+	);
+	
+	// console.log(fetchStatus)
+	
+	const state = useHookSelector(state => state)
+	// console.log(state)
+  
+	const context = useCreateContext();
+	return (
     <article className="contacts">
       <ContextData.Provider value={context}>
-        <Header isAuth={!!fetchStatus.log} />
+				<Header isAuth={!!fetchStatus.log} />
 
         <section className="contacts__body body">
           <Routes>

@@ -73,7 +73,6 @@ const CreateContact: React.FC<{ title: string }> = ({ title }) => {
   };
 
 	const inputs: IInputProps[] = Object.entries(obj).map(([key, prop]) => {
-		console.log(placeholders[key])
     return {
       title: titleName[key],
       type: typeName[key],

@@ -10,7 +10,10 @@ export const {
   name: "editId",
   initialState: 0,
   reducers: {
-    setIdForEditField: (state, action: IpayloadNumber) => action.payload,
+    setIdForEditField: (state, action: IpayloadNumber) => {
+      console.log("...action & reducer setIdForEditField");
+      return action.payload;
+    },
   },
 });
 
@@ -22,8 +25,16 @@ export const {
   initialState: "",
   reducers: {
     changeSearchField: {
-      prepare: (value) => ({ payload: value }),
-      reducer: (state, action: IpayloadString) => action.payload,
+      prepare: (value) => {
+        console.log("...action changeSearchField");
+
+        return { payload: value };
+      },
+      reducer: (state, action: IpayloadString) => {
+        console.log("...reducer changeSearchField");
+
+        return action.payload;
+      },
     },
   },
 });
@@ -40,14 +51,24 @@ export const {
   },
   reducers: {
     addLoginForChangeForm: {
-      prepare: (value) => ({ payload: value }),
+      prepare: (value) => {
+        console.log("...action addLoginForChangeForm");
+        return { payload: value };
+      },
       reducer: (state, action: IpayloadString) => {
+        console.log("...reducer addLoginForChangeForm");
+
         state.login = action.payload;
       },
     },
     addPasswordForChangeForm: {
-      prepare: (value) => ({ payload: value }),
+      prepare: (value) => {
+        console.log("...action addPasswordForChangeForm");
+
+        return { payload: value };
+      },
       reducer: (state, action: IpayloadString) => {
+        console.log("...reducer addPasswordForChangeForm");
         state.password = action.payload;
       },
     },
@@ -73,26 +94,50 @@ export const {
   },
   reducers: {
     addNameForChangeContact: {
-      prepare: (value) => ({ payload: value }),
+      prepare: (value) => {
+        console.log("...action addNameForChangeContact");
+
+        return { payload: value };
+      },
       reducer: (state, action: IpayloadString) => {
+        console.log("...reducer addNameForChangeContact");
+
         state.name = action.payload;
       },
     },
     addSurForChangeContact: {
-      prepare: (value) => ({ payload: value }),
+      prepare: (value) => {
+        console.log("...action addSurForChangeContact");
+
+        return { payload: value };
+      },
       reducer: (state, action: IpayloadString) => {
+        console.log("...reducer addSurForChangeContact");
+
         state.sur = action.payload;
       },
     },
     addEmailForChangeContact: {
-      prepare: (value) => ({ payload: value }),
+      prepare: (value) => {
+        console.log("...action addEmailForChangeContact");
+
+        return { payload: value };
+      },
       reducer: (state, action: IpayloadString) => {
+        console.log("...reducer addEmailForChangeContact");
+
         state.email = action.payload;
       },
     },
     addTelForChangeContact: {
-      prepare: (value) => ({ payload: value }),
+      prepare: (value) => {
+        console.log("...action addTelForChangeContact");
+
+        return { payload: value };
+      },
       reducer: (state, action: IpayloadString) => {
+        console.log("...reducer addTelForChangeContact");
+
         state.tel = action.payload;
       },
     },
