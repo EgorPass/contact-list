@@ -1,22 +1,20 @@
 .contactItem {
-	box-shadow: 2px 2px 2px gray;
+	box-shadow: $contactItem-boxShadow;
 	/*background: #e3e7ed;*/
 
 	&:focus {
-		background: #c4d0e2;
+		background: $contactItem-focus-backColor;
 		outline: none;
 	}
 
 	&__properties {
-		display: flex;
-		flex-flow: column nowrap;
+		@include flexBox(column, auto, stretch)
 	}
 
 	&__optionsContainer {
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: end;
-		padding: 10px 20px;
+		@include flexBox(row, end, stretch);
+
+		padding: $contactItem__optionsContainer-padding;
 
 		@media (max-width: 413px) {
 			.contacts_contactOptions {
@@ -26,7 +24,7 @@
 	}
 
 	&__name {
-		padding: 10px 20px;
+		padding: $contactItem__name-padding;
 		font-style: italic;
 		font-weight: bold;
 		text-decoration: underline;
@@ -37,20 +35,19 @@
 	&__option {
 		font-style: italic;
 		cursor: pointer;
-		padding-left: 15px
+		padding: $contactItem__option-padding;
 	}
 }
 
 .contactData {
-	display: flex;
-	flex-flow: row nowrap;
+		@include flexBox(row, left, stretch);
 
 	&__title {
-		flex-basis: 35%;
-		text-align: end;
+		flex-basis: $contactData__title-flex-basis;
+		text-align: $contactData__title-text-align;
 	}
 
 	&__value {
-		margin-left: 15px;
+		margin: $contactData__value-margin;
 	}
 }

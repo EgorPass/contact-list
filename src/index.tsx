@@ -6,7 +6,6 @@ import store from "./redux/store"
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import "./firebase"
-import './styles/index.css';
 import './styles/index.scss';
 
 

@@ -1,3 +1,5 @@
+$page__body-backColor: #e3e7ed;
+
 $contacts-grid-template-row: 15% 70% 15%;
 $contacts-grid-template-row-media: 10% 84% 6%;
 $contacts__header-gradientColor_1: #8ca3c2;
@@ -15,6 +17,20 @@ $body__contactList-width: 600px;
 $body__contactList-width-media: 92vw;
 $body__contactList-margin: 0 auto 10px;
 $body__contactList-focus-color: #c4d0e2;
+$body__cover-backColor: #a3bece99;
+$body__modalForm-width-media: 100%;
+
+$body__errorField-minWidth: 100px;
+$body__errorField-maxWidth: 350px;
+$body__errorField-width: auto;
+$body__errorField-width-media: 95%;
+
+$body__errorField-padding: 30px;
+$body__errorField-border: 1px solid gray;
+$body__errorField-borderRadius: 10px;
+$body__errorField-boxShadow: 2px 2px 4px #8d9caf;
+
+$body__loader-backColor: #a3bece99;
 
 $header__title-margin: 10px auto;
 $header__title-margin-media: 0;
@@ -26,6 +42,71 @@ $header__options-grid-template-columns-media: 20% 60% 20%;
 
 $headerOptions__search-padding: 0;
 
+$search__input-width: 15vw;
+$search__input-width-media: 40vw;
+$search__input-minWidth: 5vw;
+$search__input-borderRadius: 10px 0 0 10px;
+$search__input-border: none;
+$search__input-padding: 8px 16px;
+$search__input-boxShadow: 2px 2px 2px gray;
+$search__buttons-borderRadius: 0 10px 10px 0;
+$search__buttons-border: none;
+$search__buttons-padding: 5px 10px;
+$search__buttons-boxShadow: 2px 2px 2px gray;
+$search__buttons-backColor: white;
+$search__buttons-active-left: 1px;
+$search__buttons-active-top: 1px;
+$search__buttons-active-color: red;
+
+$contactItem-focus-backColor: #c4d0e2;
+$contactItem-boxShadow: 2px 2px 2px gray;
+$contactItem__optionsContainer-padding: 10px 20px;
+$contactItem__name-padding: 10px 20px;
+$contactItem__option-padding: 0px 0px 0px 15px;
+$contactData__title-flex-basis: 35%;
+$contactData__title-text-align: end;
+$contactData__value-margin: 0 0 0 15px;
+
+$modalForm__modalField-width: 400px;
+$modalForm__modalField-width-media: 95%;
+$modalForm__modalField-padding: 30px;
+$modalForm__modalField-padding-media: 20px;
+$modalForm__modalField-border: 1px solid gray;
+$modalForm__modalField-borderRadius: 10px;
+$modalForm__modalField-boxShadow: 2px 2px 4px #8d9caf;
+$modalForm__modalField-gradientBackColor_1: #b3cef1;
+$modalForm__modalField-gradientBackColor_2: #e3e7ed;
+$modalForm__title-padding: 4px 8px;
+$modalForm__title-border: 1px solid gray;
+$modalForm__title-borderRadius: 6px;
+$modalForm__title-boxShadow: 2px 2px 2px gray;
+$modalForm__title-gradientBackColor_1: #99a4b8;
+$modalForm__title-gradientBackColor_2: white;
+$modalForm__inputContainer-width: 100%;
+$modalForm__inputContainer-margin: 0 0 10px 0;
+$modalForm__buttonsContainer-width: 100%;
+$modalForm__buttonsContainer-margin: 10px 0 0 0;
+$modalForm__buttons-margin: 0 0 0 10px;
+$modalForm__buttons-width: 100px;
+$modalForm__buttons-padding: 10px 10px;
+$modalForm__buttons-border: none;
+$modalForm__buttons-borderRadius: 6px;
+$modalForm__buttons-boxShadow: 2px 2px 2px gray;
+$modalForm__buttons-boxShadow-active: 0px 0px 0px gray;
+$modalForm__buttons-gradientBackColor_1: #99a4b8;
+$modalForm__buttons-gradientBackColor_2: white;
+
+$inputContainer__inputTitle-textShadow: 2px 2px 2px gray;
+$inputContainer__inputField-width: 250px;
+$inputContainer__inputField-width-media: auto;
+$inputContainer__inputField-padding: 10px 20px;
+$inputContainer__inputField-border: none;
+$inputContainer__inputField-borderRadius: 6px;
+$inputContainer__inputField-boxShadow: 2px 2px 2px gray;
+
+$errorField-gradientBackColor_1: #b3cef1;
+$errorField-gradientBackColor_2: #e3e7ed;
+$errorField__text-margin: 0 0 20px 0;
 
 @mixin flexBox($dir, $jc, $ac) {
 	display: flex;
@@ -38,4 +119,11 @@ $headerOptions__search-padding: 0;
 	display: grid;
 	grid-template-rows: $row;
 	grid-template-columns: $col;
+}
+
+@mixin setPadBorderBoxShadow($padding, $border, $radius, $boxShadow) {
+	padding: $padding;
+	border: $border;
+	border-radius: $radius;
+	box-shadow: $boxShadow
 }

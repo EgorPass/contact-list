@@ -2,7 +2,26 @@
 @import "../components/contacts/contacts";
 @import "../components/header/header.scss";
 @import "../components/searchForm/searchForm";
+@import "../components/modalForm/modalForm";
+@import "../components/errorField/errorField";
 // page global
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	background: $page__body-backColor;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+
 .contacts {
 
 	user-select: none;
@@ -33,8 +52,8 @@
 		flex-basis: $contacts__footer-flex-basis;
 
 		@include flexBox(column, center, end);
-		padding:$contacts__footer-padding;
-		
+		padding: $contacts__footer-padding;
+
 	}
 
 }
@@ -43,7 +62,51 @@
 
 	&__logIn {}
 
-	&__loader {}
+	&__loader {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		width: 100vw;
+		height: 100vh;
+		background-color: $body__loader-backColor;
+
+		@include flexBox (column, center, center );
+	}
+
+	&__cover {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		width: 100vw;
+		height: 100vh;
+		background-color: $body__cover-backColor;
+		@include flexBox(column, center, center);
+	}
+
+	&__modalForm {
+		@media (max-width: 451px) {
+			margin: 0;
+			width: $body__modalForm-width-media;
+		}
+	}
+
+	&__errorField {
+		min-width: $body__errorField-minWidth;
+		max-width: $body__errorField-maxWidth;
+		width: $body__errorField-width;
+		@include flexBox(column, center, center);
+		@include setPadBorderBoxShadow($body__errorField-padding,
+			$body__errorField-border,
+			$body__errorField-borderRadius,
+			$body__errorField-boxShadow);
+
+		@media (max-width: 451px) {
+			box-sizing: border-box;
+			width: $body__errorField-width-media;
+		}
+	}
 
 	&__listsItems {
 		list-style: none;
@@ -56,7 +119,7 @@
 		outline: none;
 		box-sizing: border-box;
 		width: $body__contactList-width;
-		margin:$body__contactList-margin;
+		margin: $body__contactList-margin;
 
 		@media(max-width: 599px) {
 			width: $body__contactList-width-media;

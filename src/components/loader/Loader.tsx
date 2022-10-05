@@ -1,10 +1,8 @@
-import React from "react"
 import  { Oval } from "react-loader-spinner"
-import "./loader.css"
 
 const Loader = () => (
-		<div className = "contacts_loader">
-			<div className = "contacts_loaderPosition">
+		<div className = "body__loader">
+			<div className = "loader__loaderPosition">
 				<Oval
 			    height={80}
 			    width={80}
@@ -18,7 +16,7 @@ const Loader = () => (
 			    strokeWidthSecondary={2}
 			  
 			  /> 
-				<h1 className = "contacts_loaderText">Loading...</h1>
+				<h1 className = "loader__loaderText">Loading...</h1>
 			</div>
 		</div>
 )

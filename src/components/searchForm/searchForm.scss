@@ -4,39 +4,43 @@
 		display: inline;
 
 		&>.inputField {
-			border-radius: 10px 0 0 10px;
-			border: none;
-			padding: 8px 16px;
 			outline: none;
-			box-shadow: 2px 2px 2px gray;
-			min-width: 5vw;
-			width: 15vw;
+			min-width: $search__input-minWidth;
+			width: $search__input-width;
+
+			@include setPadBorderBoxShadow(
+				$search__input-padding, 
+				$search__input-border,
+				$search__input-borderRadius, 
+				$search__input-boxShadow
+				);
 
 			@media (max-width: 690px) {
-				width: 40vw;
+				width: $search__input-width-media;
 			}
 		}
 	}
 
 	&__buttons {
-		border-radius: 0 10px 10px 0;
-		border: none;
-		padding: 5px 10px;
 		outline: none;
-		box-shadow: 2px 2px 2px gray;
 		font-weight: bold;
 		cursor: pointer;
-		background-color: white;
+		background-color: $search__buttons-backColor;
+
+		@include setPadBorderBoxShadow(
+				$search__buttons-padding,
+				$search__buttons-border,
+				$search__buttons-borderRadius,
+				$search__buttons-boxShadow);
 
 		&:active>.buttonTitle {
-			top: 1px;
-			left: 1px;
-			color: red;
+			top: $search__buttons-active-top;
+			left: $search__buttons-active-left;
+			color: $search__buttons-active-color;
 		}
 
 		&>.buttonTitle {
 			position: relative;
 		}
-
 	}
 }

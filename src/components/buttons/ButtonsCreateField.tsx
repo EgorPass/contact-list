@@ -2,9 +2,9 @@ import ButtonAcceptCancel from './ButtonAcceptCancel'
 import { IButtonsDataForCreate } from "../../typesDescriptions"
 
 const ButtonsCreateField: React.FC<IButtonsDataForCreate> = ({buttons, child = ""}) => (
-	<div className = "contacts_createContectButtonField">
+	<div className = "modalForm__buttonsContainer">
 		{child || <span />}
-		<div className = "contacts_buttonsSide">
+		<div className = "modalForm__buttonsSide">
 
 		{
 			buttons.map( ({type, name, value, clickFunc} ) => (
@@ -13,7 +13,7 @@ const ButtonsCreateField: React.FC<IButtonsDataForCreate> = ({buttons, child = "
 					type = {type} 
 					name = {name} 
 					value = {value}
-					className = "contacts_createContactButton"
+					className = "modalForm__buttons"
 					clickFunc = {clickFunc}
 				/>
 			))

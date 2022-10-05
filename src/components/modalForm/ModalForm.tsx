@@ -11,7 +11,6 @@ const ModalForm: React.FC<ImodalProps> = ({
   inputs,
   buttons,
 	changeFunc,
-	placeholders = {},
   changeLoginToReg = () => {},
 }) => {
   let titleChangeForm;
@@ -19,7 +18,7 @@ const ModalForm: React.FC<ImodalProps> = ({
   if (login) {
     titleChangeForm = (
       <span
-        className="contacts_loginChangeField"
+        className="modalForm__loginChangeField"
         onClick={(e) => {
           changeLoginToReg(changeField);
         }}>
@@ -29,9 +28,9 @@ const ModalForm: React.FC<ImodalProps> = ({
   }
 
   return (
-    <form className="contacts_logIn">
-      <fieldset className="contacts_createContact">
-        <legend>{title}</legend>
+    <form className="body__modalForm modalForm">
+      <fieldset className="modalForm__modalField">
+        <legend className = "modalForm__title">{title}</legend>
 
 				<InputsCreateField inputs={inputs} changeFunc={changeFunc} />
         <ButtonsCreateField buttons={buttons} child={titleChangeForm} />

@@ -141,7 +141,6 @@ export interface ImodalProps {
   buttons: IButtonsProps[],
   login?: boolean,
 	changeFunc: IhandleChangeInput,
-	placeholders?: IplaceholdersObj,
   changeField?: string,
   changeLoginToReg?: IchangeLoginToReg,
 }

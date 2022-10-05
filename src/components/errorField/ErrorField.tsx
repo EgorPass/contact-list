@@ -3,7 +3,6 @@ import ContextData from "../../ContextData"
 import ButtonAccept from "../buttons/ButtonAcceptCancel"
 import { IButtonsClickFunc,IcontextCloseButton} from "../../typesDescriptions"
 
-import "./errorField.css"
 
 const ErrorField: React.FC<{error: string}> = ({error})=> {
 
@@ -19,19 +18,19 @@ const ErrorField: React.FC<{error: string}> = ({error})=> {
 		if(error.includes("Request failed with status code 404") ) string = "Что то пошло не так во время запроса на сервер"
 				
 	return(
-		<div className = "contacts_createContactContainer">
+		<div className = "body__cover">
 			
-			<div className = "contacts_errorField">	
-				<div className = "contacts_errorField_text">
+			<div className = "body__errorField errorField">	
+				<div className = "errorField__text">
 					{string}
 				</div>
 
-				<div className = 'contacts_errorField_buttonContainer'>
+				<div className = 'errorField__buttonsContainer'>
 					<span />
 					<ButtonAccept 
 						type = "button"
 						name = 'closeButton'
-						className = "contacts_createContactButton"
+						className = "modalForm__buttons"
 						clickFunc = {closeButton}
 						value = "Закрыть"
 					/>

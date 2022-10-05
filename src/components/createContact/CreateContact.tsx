@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import { useHookSelector, useHookDispatch } from "../../redux/hookStore";
 import ContextData from "../../ContextData";
 import ModalForm from "../modalForm/ModalForm";
-import "./createContact.css";
-import IrootState from "../../redux/store";
 
 import {
   IButtonsProps,
@@ -86,7 +84,7 @@ const CreateContact: React.FC<{ title: string }> = ({ title }) => {
   });
 
   return (
-    <div className="contacts_createContactContainer">
+    <div className="body__cover">
       <ModalForm
         title={title}
         inputs={inputs}
