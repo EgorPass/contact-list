@@ -37,7 +37,7 @@ export function useEdit() {
     addEmailForChangeContact,
     addTelForChangeContact,
   } = useActionsOfFields();
-  const { editId, fetchStatus, newContact, editContact } = useHookSelector(
+  const { editId, fetchStatus, newContact, editContact, changeContact } = useHookSelector(
     (state) => state
   );
   const contacts = fetchStatus.data || [];
@@ -78,6 +78,8 @@ export function useEdit() {
   const handleChangeInput: IhandleChangeInput = (e) => {
     let target = e.target as HTMLInputElement;
     let { name, value } = target;
+
+		console.log(changeContact)
 
     methods(value, name);
   };
@@ -168,7 +170,7 @@ export function useEdit() {
   };
 
   return {
-    contacts,
+    // contacts,
     createNewContact,
 
     editButton,

@@ -1,9 +1,7 @@
-import { useHookSelector } from "../redux/hookStore";
 import { useEdit } from "../usersHooks/useEdit";
 import { useLogin } from "../usersHooks/useLogin";
 
 export const useCreateContext = () => {
-  const { fetchStatus } = useHookSelector((state) => state);
 
   const {
     loginButton,
@@ -13,7 +11,6 @@ export const useCreateContext = () => {
     changeLoginToReg,
   } = useLogin();
   const {
-    contacts,
     searchButton,
     createNewContact,
     editButton,
@@ -27,26 +24,36 @@ export const useCreateContext = () => {
     getContactsFromServer,
   } = useEdit();
 
-  const context = {
-    isAuth: !!fetchStatus.log,
-    contacts,
-    searchButton,
-    createNewContact,
-    editButton,
-    copyButton,
-    removeButton,
-    acceptButton,
-    cancelButton,
-    closeButton,
-    handleChangeInput,
-    handleSearch,
-    getContactsFromServer,
-    handleChangeLogin,
-    regButton,
-    loginButton,
-    changeLoginToReg,
-    logOutButton,
+	
+	return {
+    logInContext: {
+      regButton,
+      loginButton,
+      changeLoginToReg,
+      handleChangeLogin,
+    },
+    headerContext: {
+      logOutButton,
+      searchButton,
+      createNewContact,
+      handleChangeInput,
+      handleSearch,
+    },
+    createContactContext: {
+      acceptButton,
+      cancelButton,
+      handleChangeInput,
+    },
+    contactOptionsContext: {
+      editButton,
+      copyButton,
+      removeButton,
+    },
+    context: {
+      closeButton,
+      getContactsFromServer,
+    },
   };
 
-  return context;
+  // return context;
 };

@@ -52,7 +52,8 @@ export interface Icontact {
     type: IButtonsType,
     name: string,
     value: string,
-    key?: string,
+		key?: string,
+		tooltip?: string,
     className?: string,
     clickFunc?: IButtonsClickFunc,
   }
@@ -77,7 +78,8 @@ export interface Icontact {
 		autofocus?: boolean,
 		placeholder?: string,
     changeFunc?: IhandleChangeInput,
-    onKeyEnter?: IInputKeyboardFunc,
+		onKeyEnter?: IInputKeyboardFunc,
+		tooltip?: string,
 	}
 	
 	export interface IplaceholdersObj  {
@@ -93,12 +95,13 @@ export interface Icontact {
   export type ISeachContact = (value: string) => void
   export type IlogOutButton = ()=>void
   export type IhandleChangeSearch = IhandleChangeInput
-  export interface IcontextForSearchForm {
-    searchButton: IsearchButton,
-    logOutButton: IlogOutButton,
-    createNewContact: ()=>void,
-    handleChangeInput: IhandleChangeSearch,
-    handleSearch: IInputKeyboardFunc
+  export interface IcontextForHeaderOptions {
+    searchButton: IsearchButton;
+    logOutButton: IlogOutButton;
+    createNewContact: () => void;
+    handleChangeInput: IhandleChangeSearch;
+    handleSearch: IInputKeyboardFunc;
+    searching: string;
   }
   export interface ISearchForm {
     searchContact: IsearchButton, 
@@ -109,9 +112,9 @@ export interface Icontact {
 // contacts folder //
   export type IArrayContacts = Array<Icontact>
   export interface IcontactList {
-    contacts: IArrayContacts,
+    contacts?: IArrayContacts,
     getContactsFromServer: Function,
-    isAuth: boolean,
+    isAuth?: boolean,
   }
   export interface IclickFunc {
     (e: React.MouseEvent<HTMLSpanElement>): void
@@ -163,4 +166,8 @@ export type IasyncReturnArrayContactsOrVoid = (Array<Icontact> | string | void)
 export interface IeditContactAtServer {
   obj: Icontact,
   id: number,
+}
+
+export interface Itooltip {
+	[key: string]: string,
 }

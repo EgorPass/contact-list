@@ -10,13 +10,15 @@ import {
   IhandleChangeInput,
   IchangeLoginToReg,
 } from "../typesDescriptions";
+import { useNavigate } from "react-router-dom";
 
 export function useLogin() {
   const { logIn, regIn } = useActionsOfLogin();
   const { addLoginForChangeForm, addPasswordForChangeForm } =
     useActionsOfFields();
   const { changeFieldLogin, changeFieldReg } = useActionsOfState();
-  const { logOut } = useActionsOffetchReducers();
+	const { logOut } = useActionsOffetchReducers();
+	const navigate = useNavigate();
  
 	// сброс полей диалогового окна
   const resetChange: Function = () => {
@@ -43,12 +45,15 @@ export function useLogin() {
 
   // действие для кнопки Вход
   const loginButton: IloginButton = async (obj) => {
-    logIn(obj);
+		const res = await logIn(obj);
+		navigate("/contact", {replace: true})
   };
 
   // действие для кнопки Регистрации
   const regButton: IloginButton = async (obj) => {
-    regIn(obj);
+		regIn(obj);
+		navigate("/contact", { replace: true });
+		
   };
 
   // действие для кнопки Exit

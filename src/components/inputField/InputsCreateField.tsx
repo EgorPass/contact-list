@@ -4,7 +4,7 @@ import { IInputProps, IInputsDataForCreate } from "../../typesDescriptions"
 const InputsCreateField: React.FC<IInputsDataForCreate> = ({ inputs, changeFunc,  }) => (
 	<>
 		{
-		inputs.map( ({title, name, type, value, placeholder = ''}, i: number)=> {
+		inputs.map( ({title, name, type, value, placeholder = '', tooltip = ""}, i: number)=> {
 							return (
 									<InputField key = {name}
 										title = {title}
@@ -14,6 +14,7 @@ const InputsCreateField: React.FC<IInputsDataForCreate> = ({ inputs, changeFunc,
 										autofocus={i === 0 ? true : false}
 										placeholder = {placeholder}
 										changeFunc={changeFunc}
+										tooltip = {tooltip}
 									/>
 								)
 						})

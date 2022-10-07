@@ -9,11 +9,12 @@ const InputField: React.FC<IInputProps> = ({
   title = "",
   value = "",
   type = "text",
-	placeholder = "",
+  placeholder,
+  tooltip,
   className = "modalForm__inputContainer inputContainer",
 }) => (
-  <div className={className}>
-    <span className = "inputTitle">
+  <div className={className} data-tooltip={tooltip}>
+    <span className="inputTitle">
       {title}
       {title ? ":" : ""}{" "}
     </span>
@@ -23,9 +24,9 @@ const InputField: React.FC<IInputProps> = ({
       value={value}
       type={type}
       name={name}
-			autoFocus={autofocus}
-			placeholder={placeholder}
-			className = 'inputField'
+      autoFocus={autofocus}
+      placeholder={placeholder}
+      className="inputField"
     />
   </div>
 );

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useHookSelector, useHookDispatch } from "../../redux/hookStore";
-import ContextData from "../../ContextData";
+import ContextData, { ContextCreateContact } from "../../ContextData";
 import ModalForm from "../modalForm/ModalForm";
 
 import {
@@ -9,6 +9,7 @@ import {
   IcontextForCreateContact,
   IInputProps,
   IplaceholdersObj,
+  Itooltip,
 } from "../../typesDescriptions";
 
 const CreateContact: React.FC<{ title: string }> = ({ title }) => {
@@ -17,7 +18,7 @@ const CreateContact: React.FC<{ title: string }> = ({ title }) => {
     changeContact: { name, sur, tel, email },
   } = useHookSelector((state) => state);
   const { acceptButton, cancelButton, handleChangeInput } = useContext(
-    ContextData
+    ContextCreateContact
   ) as IcontextForCreateContact;
 
   const buttons: Array<IButtonsProps> = [
@@ -25,6 +26,7 @@ const CreateContact: React.FC<{ title: string }> = ({ title }) => {
       type: "submit",
       name: "accept",
       value: "сохранить",
+      tooltip: "Создать контакт",
       clickFunc: (e) => {
         e.preventDefault();
         acceptButton({ name, sur, tel, email });
@@ -34,6 +36,7 @@ const CreateContact: React.FC<{ title: string }> = ({ title }) => {
       type: "button",
       name: "cancel",
       value: "отменить",
+      tooltip: "Не создавать контакт",
       clickFunc: (e) => {
         e.preventDefault();
         cancelButton();
@@ -60,7 +63,14 @@ const CreateContact: React.FC<{ title: string }> = ({ title }) => {
     sur: "Иванов",
     tel: "+7 987 654 32 10",
     email: "post@mail.ru",
-  };
+	};
+	
+		const tooltip: Itooltip = {
+      name: "Введите имя",
+      sur: "Введите фамилию",
+      tel: "Введите номер телефона без скобок и тире",
+      email: "Введите адрес электронной почты",
+    };
 
   const getValue = (key: string): string => {
     let value: string = "";
@@ -79,6 +89,7 @@ const CreateContact: React.FC<{ title: string }> = ({ title }) => {
       name: key,
       value: getValue(key),
       placeholder: placeholders[key],
+      tooltip: tooltip[key],
     };
   });
 

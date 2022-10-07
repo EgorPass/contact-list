@@ -3,18 +3,20 @@ import React, { useContext } from "react";
 import SearchForm from "../../searchForm/SearchForm";
 import Nav from "../nav/Nav";
 import Menu from "../menu/Menu";
-import ContextData from "../../../ContextData";
+import { ContextHeader} from "../../../ContextData";
 
-import { IcontextForSearchForm } from "../../../typesDescriptions";
+import { IcontextForHeaderOptions } from "../../../typesDescriptions";
 
-const HederOptions: React.FC = () => {
+const HeaderOptions: React.FC = () => {
   const {
     searchButton,
     logOutButton,
     createNewContact,
     handleChangeInput,
     handleSearch,
-  } = useContext(ContextData) as IcontextForSearchForm;
+  } = useContext(ContextHeader) as IcontextForHeaderOptions;
+
+	console.log("...rendening HeaderOptions")
 
   return (
     <div className="header__options headerOptions">
@@ -31,4 +33,6 @@ const HederOptions: React.FC = () => {
   );
 };
 
-export default HederOptions;
+// React.memo не работает, компонент рендеринтся до 4 раз
+// export default React.memo(HeaderOptions)
+export default HeaderOptions;

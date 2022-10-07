@@ -9,7 +9,7 @@ const SearchForm: React.FC<ISearchForm> = ({ changeField, searchContact, onKeyEn
 	
 
 	const {searching} = useHookSelector(state=>state)
-	
+	console.log("...rendering searchForm")
 	return (
     <div className="headerOptions__search search">
       <InputField
@@ -37,4 +37,4 @@ const SearchForm: React.FC<ISearchForm> = ({ changeField, searchContact, onKeyEn
   );
 }
 
-export default SearchForm
+export default React.memo(SearchForm)
