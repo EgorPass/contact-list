@@ -130,21 +130,29 @@ code {
 			background: $body__contactList-focus-color;
 		}
 	}
-}
 
-.tooltipBox {
-	box-sizing: border-box;
-	max-width: 350px;
-	text-align: center;
-	position: absolute;
-	padding: 10px 20px;
-	border: 1px solid gray;
-	border-radius: 6px;
-	box-shadow: 2px 2px 2px gray;
-	// color: red;
-	background-image: linear-gradient(90deg, rgba(225, 210, 210, 0.9), rgba(246, 234, 234, 0.8));
-	z-index: 150;
-	@media(max-width: 500px) {
-		width: 250px;
+	&__tooltipBox {
+		box-sizing: border-box;
+		max-width: 350px;
+		text-align: center;
+		position: absolute;
+		padding: 10px 20px;
+		border: 1px solid gray;
+		border-radius: 6px;
+		box-shadow: 2px 2px 2px gray;
+		// color: red;
+		background-image: linear-gradient(90deg, rgba(228, 204, 218, 0.9), rgba(217, 203, 236, 0.8));
+		z-index: 150;
+
+		@media(max-width: 500px) {
+			width: 250px;
+		}
+	}
+
+	&__errorInput {
+		box-shadow: $body__errorInput-boxShadow, $inputContainer__inputField-boxShadow !important;
+		color: red;
+		font-weight: bold;
+		
 	}
 }

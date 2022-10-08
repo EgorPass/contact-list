@@ -40,9 +40,9 @@ export interface Icontact {
 // useSyntaxis //
   export type Ifields = Omit<Icontact, "id">
   export type IcheckString = (value: string) => boolean
-  export type IcheckField = (obj: Ifields, nameInput: string) => boolean
+  export type IcheckField = (value: string, nameInput: string) => boolean
   export type IclassToInput = (target: HTMLElement, cool: boolean) => void
-  export type IchangeClassAtInputs = (target: HTMLElement, obj: Ifields, nameInput: string) => void
+  export type IchangeClassAtInputs = (target: HTMLElement, value: string, nameInput: string) => void
   export type IcheckFieldsForAccept = (obj: Ifields) => boolean
 
 //  buttons  //

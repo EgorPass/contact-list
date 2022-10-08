@@ -8,9 +8,9 @@ const Nav: React.FC<IobjOfFuncWhithEvent> = ({ logOutButton }) =>{
 
 	return (
 		<nav className="headerOptions__buttons">
-    <span>
+    <span data-tooltip = "Выйти из списка контактов на поле входа и регистрации">
       <Link onClick={logOutButton} to="/" className="headerOptions__link">
-        Exit
+        Выход
       </Link>
     </span>
   </nav>

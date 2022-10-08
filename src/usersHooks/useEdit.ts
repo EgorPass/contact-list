@@ -16,7 +16,10 @@ import {
   IInputKeyboardFunc,
   IButtonsClickFunc,
   IcheckFieldsForAccept,
+  IchangeClassAtInputs,
 } from "../typesDescriptions";
+
+
 
 export function useEdit() {
   const { setStatusEdit, setNewContact } = useActionsOfState();
@@ -44,7 +47,11 @@ export function useEdit() {
 
   const {
     checkFieldsForAccept,
-  }: { checkFieldsForAccept: IcheckFieldsForAccept } = useSyntaxisCheck();
+    changeClassAtInputs,
+  }: {
+    checkFieldsForAccept: IcheckFieldsForAccept,
+    changeClassAtInputs: IchangeClassAtInputs,
+  } = useSyntaxisCheck();
 
   const resetChange: Function = () => {
     addNameForChangeContact("");
@@ -77,10 +84,11 @@ export function useEdit() {
   // функция для контролируемого взаимодействия с input
   const handleChangeInput: IhandleChangeInput = (e) => {
     let target = e.target as HTMLInputElement;
-    let { name, value } = target;
-
-		console.log(changeContact)
-
+		let { name, value } = target;
+		
+		// проверка заполнения полей
+		changeClassAtInputs(target, target.value, target.name);
+		
     methods(value, name);
   };
 

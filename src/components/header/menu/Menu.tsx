@@ -7,7 +7,7 @@ const Menu: React.FC<{ createNewContact: () => void }> = ({
 	console.log("...rendering Menu");
 
 	return (
-		<div onClick={createNewContact} className="headerOptions__buttons">
+		<div onClick={createNewContact} className="headerOptions__buttons" data-tooltip= "Нажмите, чтобы начать создавать нового контакта">
 			Новый контакт
 		</div>
 	);

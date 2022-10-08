@@ -4,7 +4,7 @@ import ContextData, {
   ContextCreateContact,
   ContextHeader,
   ContextLogIn,
-	ContextContactOptions
+  ContextContactOptions,
 } from "./ContextData";
 import { useCreateContext } from "./usersHooks/useCreateContext";
 
@@ -22,70 +22,63 @@ import { useMouseEvents } from "./usersHooks/useMouseEvents";
 function App() {
   const { newContact, editContact, fetchStatus } = useHookSelector(
     (state) => state
-		);
-	const state = useHookSelector((state) => state);
-	const { context, logInContext, headerContext, createContactContext, contactOptionsContext } = useCreateContext();
-	const { tooltipEvent, blurEventForInput } = useMouseEvents();
+  );
+  const state = useHookSelector((state) => state);
+  const {
+    context,
+    logInContext,
+    headerContext,
+    createContactContext,
+    contactOptionsContext,
+  } = useCreateContext();
+  const { tooltipEvent } =
+    useMouseEvents();
 
-	const tooltipBox = document.body.querySelector(".tooltipBox");
-	useEffect(() => {
-		console.log(tooltipBox)
-		window.addEventListener("mouseover", tooltipEvent);
-		window.addEventListener("blur", blurEventForInput, true);
-		// window.addEventListener("focus", blurEventForInput);
-		
-		if (!!tooltipBox) tooltipBox.remove();
+  const tooltipBox = document.body.querySelector(".body__tooltipBox");
+  useEffect(() => {
+    window.addEventListener("mouseover", tooltipEvent);
+    if (!!tooltipBox) tooltipBox.remove();
+    return () => {
+      window.removeEventListener("mouseover", tooltipEvent);
+    };
+  }, [tooltipBox]);
 
-		return () => {
-			window.removeEventListener("mouseover", tooltipEvent)
-			window.removeEventListener("blur", blurEventForInput, true);
-			
-		}
-	 }, [tooltipBox])
-
-	
-  console.log(state)
+  console.log(state);
   // console.log(fetchStatus);
 
-	
   return (
     <article className="contacts">
-        <ContextHeader.Provider value={headerContext}>
-          <Header />
-        </ContextHeader.Provider>
+      <ContextHeader.Provider value={headerContext}>
+        <Header />
+      </ContextHeader.Provider>
 
-        <section className="contacts__body body">
-          
-					<ContextLogIn.Provider value={logInContext}>
-						<ContextData.Provider value={context}>
-							<ContextContactOptions.Provider value={contactOptionsContext} >
-								
-								<Routes>
-									<Route path="/" element={<LoginForm />} />
-									<Route path="/contact" element={<ContactsList />} />
-								</Routes>
+      <section className="contacts__body body">
+        <ContextLogIn.Provider value={logInContext}>
+          <ContextData.Provider value={context}>
+            <ContextContactOptions.Provider value={contactOptionsContext}>
+              <Routes>
+                <Route path="/" element={<LoginForm />} />
+                <Route path="/contact" element={<ContactsList />} />
+              </Routes>
+            </ContextContactOptions.Provider>
 
-							</ContextContactOptions.Provider>
-							
-							<ContextCreateContact.Provider value={createContactContext}>
-								{!!fetchStatus.log && editContact && (
-									<CreateContact
-									title={
-										newContact ? "Создание контакта" : "Редактирование контакта"
-									}
-									/>
-									)}
-							</ContextCreateContact.Provider>
-							
-							{fetchStatus.status === "pending" && <Loader />}
-							{fetchStatus.error && <ErrorField error={fetchStatus.error} />}
-						
-						</ContextData.Provider>
-          </ContextLogIn.Provider>
-        
-				</section>
+            <ContextCreateContact.Provider value={createContactContext}>
+              {!!fetchStatus.log && editContact && (
+                <CreateContact
+                  title={
+                    newContact ? "Создание контакта" : "Редактирование контакта"
+                  }
+                />
+              )}
+            </ContextCreateContact.Provider>
 
-        <Footer />
+            {fetchStatus.status === "pending" && <Loader />}
+            {fetchStatus.error && <ErrorField error={fetchStatus.error} />}
+          </ContextData.Provider>
+        </ContextLogIn.Provider>
+      </section>
+
+      <Footer />
     </article>
   );
 }

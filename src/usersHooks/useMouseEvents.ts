@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import useSyntaxisCheck from "./useSyntaxisCheck";
 
 export const useMouseEvents = () => {
   let tooltip: { target: null | HTMLElement; title: string } = {
@@ -8,9 +9,11 @@ export const useMouseEvents = () => {
 
   let tooltipBox: HTMLElement;
 
-  const tooltipEvent = (e: any) => {
-    // const target = e.target as HTMLElement;
-    const tooltipTag = e.target.closest("[data-tooltip]") as HTMLElement;
+  const { changeClassAtInputs } = useSyntaxisCheck();
+
+  const tooltipEvent = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const tooltipTag = target.closest("[data-tooltip]") as HTMLElement;
     if (!tooltipTag || tooltip!.target) return;
 
     tooltip.target = tooltipTag as HTMLElement;
@@ -31,7 +34,7 @@ export const useMouseEvents = () => {
 
   const createTooltipBox = (anch: HTMLElement, title: string) => {
     tooltipBox = document.createElement("div");
-    tooltipBox!.className = "tooltipBox";
+    tooltipBox!.className = "body__tooltipBox";
     tooltipBox.innerHTML = title;
     document.body.append(tooltipBox);
     positionAt(anch, tooltipBox);
@@ -42,33 +45,19 @@ export const useMouseEvents = () => {
     const width: number = elem.offsetWidth;
     const height: number = elem.offsetHeight;
 
-    let top: number = coords.top - height - 5,
+    let top: number = coords.top - height - 20,
       left: number = coords.left - (width - anch.offsetWidth) / 2;
 
-    // console.log("left: ", left)
-    // console.log("coords.left: ", coords.left)
-    // console.log("anchWidth ", anch.offsetWidth);
-    // console.log("elemWidth ", width);
+    if (top < 70) top = coords.bottom + height - 20;
+    if (left < 0) left = 5;
+    if (left + elem.offsetWidth > document.documentElement.offsetWidth)
+      left = document.documentElement.offsetWidth - elem.offsetWidth - 5;
 
     tooltipBox.style.top = top + "px";
     tooltipBox.style.left = left + "px";
   };
 
-	
-  const blurEventForInput = (e: any) => {
-    console.log('onBlur')
-		const target = e.target as HTMLElement;
-    if (target.tagName !== "INPUT") return;
-		console.log(target);
-	}
-	
-
-	const focusEventForInput = (e: React.FormEvent) => {
-		
-	}
-
   return {
     tooltipEvent,
-    blurEventForInput,
   };
 };

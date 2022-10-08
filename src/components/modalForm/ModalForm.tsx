@@ -17,10 +17,12 @@ const ModalForm: React.FC<ImodalProps> = ({
 
   if (login) {
     titleChangeForm = (
-      <span
+			<span
+				data-tooltip={changeField === "login" ? "Нажмите если нужно зарегистрироваться" : "Нажмите если уже есть логин и пароль для входа"}
         className="modalForm__loginChangeField"
         onClick={(e) => {
-          changeLoginToReg(changeField);
+					changeLoginToReg(changeField);
+					
         }}>
         {changeField === "login" ? "Регистрация" : "Войти"}
       </span>

@@ -43,17 +43,22 @@ export function useLogin() {
     if (str === "reg") changeFieldReg();
   };
 
+	// финальные действия для кнопок регистрации или входа
+	const logInOrRegIn: Function = (state: boolean) => {
+		if (state) addPasswordForChangeForm("");
+    navigate("/contact", { replace: true });
+	}
+
   // действие для кнопки Вход
   const loginButton: IloginButton = async (obj) => {
 		const res = await logIn(obj);
-		navigate("/contact", {replace: true})
+			logInOrRegIn(!!res);
   };
 
   // действие для кнопки Регистрации
   const regButton: IloginButton = async (obj) => {
-		regIn(obj);
-		navigate("/contact", { replace: true });
-		
+		const res = await regIn(obj);
+		logInOrRegIn(!!res);
   };
 
   // действие для кнопки Exit
